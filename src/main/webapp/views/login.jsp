@@ -13,7 +13,7 @@
 </head>
 <body>
 
-<form:form method="post" modelAttribute="user" action="${actionUrl}">
+<form:form method="post" modelAttribute="user" action="/login">
     <form:errors path="*"/>
     <form:hidden path="id"/><br>
     <form:input path="login" placeholder="login"/><br><br>
