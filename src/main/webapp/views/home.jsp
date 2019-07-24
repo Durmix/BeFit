@@ -6,7 +6,7 @@
 <title>Be FIT</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="/css/style2.css">
 <style>
     body {font-family: "Times New Roman", Georgia, Serif;}
     h1, h2, h3, h4, h5, h6 {
@@ -19,12 +19,12 @@
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
     <div class="w3-bar w3-white w3-padding w3-card" style="letter-spacing:4px;">
-        <a href="#home" class="w3-bar-item w3-button"><img src="/images/logo.png" height="30"></a>
+        <a href="/" class="w3-bar-item w3-button"><img src="/images/logo.png" height="30"></a>
         <!-- Right-sided navbar links. Hide them on small screens -->
         <div class="w3-right w3-hide-small">
-            <a href="#about" class="w3-bar-item w3-button">About</a>
-            <a href="#menu" class="w3-bar-item w3-button">Menu</a>
-            <a href="#contact" class="w3-bar-item w3-button">Contact</a>
+            <a href="/login" class="w3-bar-item w3-button">Logowanie</a>
+            <a href="/register" class="w3-bar-item w3-button">Rejestracja</a>
+            <a href="#menu" class="w3-bar-item w3-button">O nas</a>
         </div>
     </div>
 </div>
@@ -47,12 +47,12 @@
         </div>
 
         <div class="w3-col m6 w3-padding-large">
-            <h1 class="w3-center">About Catering</h1><br>
-            <h5 class="w3-center">Tradition since 1889</h5>
+            <h1 class="w3-center">O nas</h1><br>
+            <h5 class="w3-center">Karmimy Was od 2019</h5>
             <p class="w3-large">The Catering was founded in blabla by Mr. Smith in lorem ipsum dolor sit amet, consectetur adipiscing elit consectetur
                 adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
                 ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute iruredolor in reprehenderit in voluptate velit esse cillum dolore eu
-                fugiat nulla pariatur.We only use <span class="w3-tag w3-light-grey">seasonal</span> ingredients.</p>
+                fugiat nulla pariatur.We only use seasonal ingredients.</p>
             <p class="w3-large w3-text-grey w3-hide-medium">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
                 anim id est laborum consectetur adipiscing elit, sed do eiusmod temporincididunt ut labore et dolore magna aliqua. Ut enim ad minim
                 veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
@@ -64,21 +64,21 @@
     <!-- Menu Section -->
     <div class="w3-row w3-padding-64" id="menu">
         <div class="w3-col l6 w3-padding-large">
-            <h1 class="w3-center">Our Menu</h1><br>
-            <h4>Bread Basket</h4>
-            <p class="w3-text-grey">Assortment of fresh baked fruit breads and muffins 5.50</p><br>
 
-            <h4>Honey Almond Granola with Fruits</h4>
-            <p class="w3-text-grey">Natural cereal of honey toasted oats, raisins, almonds and dates 7.00</p><br>
+            <h1 class="w3-center">OFERUJEMY:</h1><br>
 
-            <h4>Belgian Waffle</h4>
-            <p class="w3-text-grey">Vanilla flavored batter with malted flour 7.50</p><br>
+            <h4>Najwyższą jakość jedzenia</h4>
+            <p class="w3-text-grey">Wszystkie potrawy są przygotowywane z najwyższej jakości składników dlatego zawsze są świeże, pełne wartości odżywczych i przy tym przepyszne</p><br>
 
-            <h4>Scrambled eggs</h4>
-            <p class="w3-text-grey">Scrambled eggs, roasted red pepper and garlic, with green onions 7.50</p><br>
+            <h4>Dostawę gotowych posiłków do domu</h4>
+            <p class="w3-text-grey">Nasz kurier dostarczy jedzenie wprost pod drzwi</p><br>
 
-            <h4>Blueberry Pancakes</h4>
-            <p class="w3-text-grey">With syrup, butter and lots of berries 8.50</p>
+            <h4>Konsultację z dietetykiem</h4>
+            <p class="w3-text-grey">W skład naszej kadry wchodzą specjaliści w sprawach żywienia, którzy pomogą Ci wybrać odpowiedni plan żywieniowy</p><br>
+
+            <h4>Konkurencyjne ceny</h4>
+            <p class="w3-text-grey">Nasza oferta jest jedną z najlepszych na rynku, co potwierdza wielu zadowolonych klientów</p><br>
+
         </div>
 
         <div class="w3-col l6 w3-padding-large">
@@ -86,29 +86,12 @@
         </div>
     </div>
 
-    <hr>
-
-    <!-- Contact Section -->
-    <div class="w3-container w3-padding-64" id="contact">
-        <h1>Contact</h1><br>
-        <p>We offer full-service catering for any event, large or small. We understand your needs and we will cater the food to satisfy the biggerst criteria of them all, both look and taste. Do not hesitate to contact us.</p>
-        <p class="w3-text-blue-grey w3-large"><b>Catering Service, 42nd Living St, 43043 New York, NY</b></p>
-        <p>You can also contact us by phone 00553123-2323 or email catering@catering.com, or you can send us a message here:</p>
-        <form action="/action_page.php" target="_blank">
-            <p><input class="w3-input w3-padding-16" type="text" placeholder="Name" required name="Name"></p>
-            <p><input class="w3-input w3-padding-16" type="number" placeholder="How many people" required name="People"></p>
-            <p><input class="w3-input w3-padding-16" type="datetime-local" placeholder="Date and time" required name="date" value="2017-11-16T20:00"></p>
-            <p><input class="w3-input w3-padding-16" type="text" placeholder="Message \ Special requirements" required name="Message"></p>
-            <p><button class="w3-button w3-light-grey w3-section" type="submit">SEND MESSAGE</button></p>
-        </form>
-    </div>
-
     <!-- End page content -->
 </div>
 
 <!-- Footer -->
 <footer class="w3-center w3-light-grey w3-padding-32">
-    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+    <p>Be Fit</p>
 </footer>
 
 </body>

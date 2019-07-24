@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -26,25 +27,21 @@ public class User {
     @Column(unique = true)
     private String login;
 
-    @NotNull
+    @NotBlank
     private String firstName;
 
-    @NotNull
+    @NotBlank
     private String lastName;
 
-    @NotNull
+    @NotBlank
     private String password;
 
     @Email
-    @NotEmpty
+    @NotBlank
     @Column(unique = true)
     private String email;
 
     private String address;
-
-    public String getPassword() {
-        return password;
-    }
 
 }
 

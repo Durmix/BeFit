@@ -1,12 +1,10 @@
 package pl.coderslab.controller;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import pl.coderslab.entity.User;
 import pl.coderslab.repository.UserRepository;
 import pl.coderslab.service.LoginService;
@@ -26,6 +24,11 @@ public class HomeController {
         this.loginService = loginService;
     }
 
+    @RequestMapping("/")
+    public String home() {
+        return "/home";
+    }
+
     @RequestMapping("/home")
     public String homePage() {
         return "/home";
@@ -42,6 +45,7 @@ public class HomeController {
         if (errors.hasErrors()) {
             return "/registration";
         }
+        user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
         userRepository.save(user);
         return "redirect:/login";
     }
@@ -56,19 +60,24 @@ public class HomeController {
         User user = loginService.checkLoginData(login, password);
 
         if (user == null) {
-            session.setAttribute("loginError", "loginError");
-            return "/login";
+            session.setAttribute("valid", false);
+            return "login";
         } else {
-            session.setAttribute("loggedIn", user);
-            session.removeAttribute("loginError");
-            return "redirect:/home";
+            session.setAttribute("logged", user);
+            session.removeAttribute("valid");
+            return "redirect:mainPage";
         }
     }
 
     @RequestMapping("/logout")
     public String logout(HttpSession session) {
-        session.removeAttribute("loggedIn");
+        session.removeAttribute("logged");
         return "redirect:/home";
+    }
+
+    @GetMapping("/mainPage")
+    public String mainPage() {
+        return "/mainPage";
     }
 
 }

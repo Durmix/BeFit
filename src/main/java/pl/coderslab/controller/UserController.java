@@ -2,8 +2,7 @@ package pl.coderslab.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.coderslab.entity.User;
 import pl.coderslab.service.UserService;
 
@@ -20,8 +19,21 @@ public class UserController {
     @RequestMapping("/account/{id}")
     public String account(@PathVariable Long id, Model model) {
         User user = userService.findUser(id);
+        model.addAttribute("user", user);
+        return "profile";
+    }
 
-        return "user/account";
+    @GetMapping("/changeEmail/{id}")
+    public String changeEmail(@PathVariable Long id, Model model) {
+        User user = userService.findUser(id);
+        model.addAttribute("user", user);
+        return "/email";
+    }
+
+    @PostMapping("/changeEmail/{id}")
+    public String changeEmail(@PathVariable Long id, @ModelAttribute User user) {
+        userService.save(user);
+        return "redirect:/account/" + id;
     }
 
 }
