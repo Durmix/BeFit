@@ -41,6 +41,9 @@ public class Plan {
     @Min(1500)
     private Integer calories;
 
+    private Double pricePerDay;
+    private Double pricePerWeek;
+
     public void addUser(User user) {
         users.add(user);
     }

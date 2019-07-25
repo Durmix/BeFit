@@ -22,7 +22,6 @@ public class UserController {
     @RequestMapping("/account/{id}")
     public String account(@PathVariable Long id, Model model) {
         User user = userService.findUser(id);
-        model.addAttribute("user", user);
         return "profile";
     }
 

@@ -13,7 +13,6 @@ import pl.coderslab.repository.PlanRepository;
 import pl.coderslab.service.PlanService;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -33,7 +32,7 @@ public class PlanController {
     public String list(Model model) {
         List<Plan> plans = planRepository.findAll();
         model.addAttribute("plans", plans);
-        return "/planList";
+        return "planList";
     }
 
     @RequestMapping(value = "/edit", produces = "text/plain;charset=UTF-8")

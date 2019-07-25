@@ -52,7 +52,7 @@ public class HomeController {
     }
 
     @GetMapping("/login")
-    public String login() {
+    public String login(HttpSession session) {
         return "/login";
     }
 
@@ -61,11 +61,11 @@ public class HomeController {
         User user = loginService.checkLoginData(login, password);
 
         if (user == null) {
-            session.setAttribute("valid", false);
+            session.setAttribute("notValid", "notValid");
             return "login";
         } else {
             session.setAttribute("logged", user);
-            session.removeAttribute("valid");
+            session.removeAttribute("notValid");
             if (user.getRole().equals("USER")){
                 return "redirect:mainPage";
             } else {
@@ -88,6 +88,11 @@ public class HomeController {
     @GetMapping("/modPage")
     public String modPage() {
         return "/modPage";
+    }
+
+    @GetMapping("/restore")
+    public String restore() {
+        return "/restoreForm";
     }
 
 }
