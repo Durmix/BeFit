@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Logowanie</title>
+    <title>Rejestracja</title>
 </head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -49,6 +49,7 @@
     <form:errors path="password" element="dif"/><br>
     <form:input path="email" placeholder="email" /><br>
     <form:errors path="email" element="dif"/><br>
+    <form:hidden path="role" value="${user.role}"/><br>
     <input type="submit" value="Zarejestruj"/><br>
     <a href="/login">Logowanie</a>
 </form:form>

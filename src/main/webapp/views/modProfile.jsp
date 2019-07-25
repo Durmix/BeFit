@@ -50,10 +50,11 @@
                 <tr align="center">
                     <td>Adres</td> <td>${user.address}</td>
                 </tr>
+            </table>
+
+            <table border="1">
                 <tr align="center">
-                    <td><a href="/user/changeEmail/${user.id}">Zmień email</a></td>
-                    <td><a href="/user/changeAddress/${user.id}">Zmień adres</a></td>
-                    <td><a href="/user/changePassword/${user.id}">Zmień hasło</a></td>
+                    <td>Wykupiony zestaw</td> <td></td>
                 </tr>
             </table>
 

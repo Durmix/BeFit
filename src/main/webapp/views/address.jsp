@@ -30,17 +30,18 @@
         </div>
     </div>
 </div>
+
     <br><br><br>
     <form:form method="post" modelAttribute="user">
         <from:hidden path="id" value="${user.id}"/>
         <from:hidden path="login" value="${user.login}"/>
         <from:hidden path="firstName" value="${user.firstName}"/>
         <from:hidden path="lastName" value="${user.lastName}"/>
+        <from:hidden path="password" value="${user.password}"/>
         <from:hidden path="email" value="${user.email}"/>
-        <from:hidden path="address" value="${user.address}"/>
         <from:hidden path="role" value="${user.role}"/>
-        <form:password path="password"/>
-        <input type="submit" value="Zmień hasło"/>
+        <form:input path="address"/>
+        <input type="submit" value="Zmień adres"/>
     </form:form>
 
 </body>

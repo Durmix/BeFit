@@ -33,7 +33,13 @@
 
     <br><br><br>
     <form:form method="post" modelAttribute="user">
-        <from:hidden path="id" value="${user.id}"/> <%-- dodać wszystkie properties jako hidden path albo zmienić metodę na equery przez repo --%>
+        <from:hidden path="id" value="${user.id}"/>
+        <from:hidden path="login" value="${user.login}"/>
+        <from:hidden path="firstName" value="${user.firstName}"/>
+        <from:hidden path="lastName" value="${user.lastName}"/>
+        <from:hidden path="password" value="${user.password}"/>
+        <from:hidden path="address" value="${user.address}"/>
+        <from:hidden path="role" value="${user.role}"/>
         <form:input path="email"/>
         <input type="submit" value="Zmień email"/>
     </form:form>

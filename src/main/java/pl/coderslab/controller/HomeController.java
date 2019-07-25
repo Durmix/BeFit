@@ -1,6 +1,7 @@
 package pl.coderslab.controller;
 
 import org.mindrot.jbcrypt.BCrypt;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,7 +19,7 @@ public class HomeController {
     private UserRepository userRepository;
     private LoginService loginService;
 
-
+    @Autowired
     public HomeController(UserRepository userRepository, LoginService loginService) {
         this.userRepository = userRepository;
         this.loginService = loginService;
@@ -65,7 +66,11 @@ public class HomeController {
         } else {
             session.setAttribute("logged", user);
             session.removeAttribute("valid");
-            return "redirect:mainPage";
+            if (user.getRole().equals("USER")){
+                return "redirect:mainPage";
+            } else {
+                return "redirect:modPage";
+            }
         }
     }
 
@@ -78,6 +83,11 @@ public class HomeController {
     @GetMapping("/mainPage")
     public String mainPage() {
         return "/mainPage";
+    }
+
+    @GetMapping("/modPage")
+    public String modPage() {
+        return "/modPage";
     }
 
 }

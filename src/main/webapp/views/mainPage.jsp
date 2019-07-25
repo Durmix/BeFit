@@ -23,7 +23,7 @@
         <!-- Right-sided navbar links. Hide them on small screens -->
         <div class="w3-right w3-hide-small">
             <a href="/user/account/${logged.id}" class="w3-bar-item w3-button">Twoje konto</a>
-            <a href="/order" class="w3-bar-item w3-button">Zamów</a>
+            <a href="/plan/order" class="w3-bar-item w3-button">Zamów</a>
             <a href="/logout" class="w3-bar-item w3-button">Wyloguj</a>
         </div>
     </div>

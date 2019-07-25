@@ -33,7 +33,7 @@
             <div class="w3-right w3-hide-small">
                 <a href="/login" class="w3-bar-item w3-button">Logowanie</a>
                 <a href="/register" class="w3-bar-item w3-button">Rejestracja</a>
-                <a href="/home/#menu" class="w3-bar-item w3-button">O nas</a>
+                <a href="/plan/list" class="w3-bar-item w3-button">Oferta</a>
             </div>
         </div>
     </div>

@@ -10,6 +10,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 @Data
@@ -42,6 +43,18 @@ public class User {
     private String email;
 
     private String address;
+
+    @NotBlank
+    private String role = "USER";
+
+    @ManyToMany
+    private List<Plan> usedPlans;
+
+    @OneToMany(mappedBy = "author")
+    private List<Plan> createdPlans;
+
+    @OneToMany(mappedBy = "user")
+    private List<Comment> comments;
 
 }
 

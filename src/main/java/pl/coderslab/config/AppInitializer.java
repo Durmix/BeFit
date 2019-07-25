@@ -4,6 +4,9 @@ import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.DispatcherServlet;
+import pl.coderslab.entity.Plan;
+import pl.coderslab.fixture.CommentFixture;
+import pl.coderslab.fixture.PlanFixture;
 import pl.coderslab.fixture.UserFixture;
 
 import javax.servlet.FilterRegistration;
@@ -29,5 +32,7 @@ public class AppInitializer implements WebApplicationInitializer {
 
         ctx.refresh();
         ctx.getBean(UserFixture.class).initData();
+        ctx.getBean(PlanFixture.class).initData();
+        ctx.getBean(CommentFixture.class).initData();
     }
 }

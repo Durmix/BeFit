@@ -19,12 +19,12 @@
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
     <div class="w3-bar w3-white w3-padding w3-card" style="letter-spacing:4px;">
-        <a href="/" class="w3-bar-item w3-button"><img src="/images/logo.png" height="30"></a>
+        <a href="/modPage" class="w3-bar-item w3-button"><img src="/images/logo.png" height="30"></a>
         <!-- Right-sided navbar links. Hide them on small screens -->
         <div class="w3-right w3-hide-small">
-            <a href="/login" class="w3-bar-item w3-button">Logowanie</a>
-            <a href="/register" class="w3-bar-item w3-button">Rejestracja</a>
-            <a href="/plan/list" class="w3-bar-item w3-button">Oferta</a>
+            <a href="/user/account/${logged.id}" class="w3-bar-item w3-button">Twoje konto</a>
+            <a href="/mod/list" class="w3-bar-item w3-button">Lista użytkowników</a>
+            <a href="/logout" class="w3-bar-item w3-button">Wyloguj</a>
         </div>
     </div>
 </div>
