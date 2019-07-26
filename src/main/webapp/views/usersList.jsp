@@ -36,9 +36,9 @@
                             <tbody>
                                 <c:forEach items="${users}" var="user">
                                     <tr>
-                                        <td>${user.firstName}</td>
-                                        <td>${user.lastName}</td>
+                                        <td>${user.firstName} ${user.lastName}</td>
                                         <td>${user.email}</td>
+                                        <td>${user.role}</td>
                                         <td><a href="/mod/showUser?id=${user.id}">Profil</a></td>
                                     </tr>
                                     <hr/>
