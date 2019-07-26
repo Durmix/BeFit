@@ -32,7 +32,7 @@ public class PlanFixture {
         plan2.setAuthor(userRepository.findByLogin("Janek"));
         plan2.setName("Fat");
         plan2.setCalories(4890);
-        plan2.setDescription("ale z ciebie spaślak o matko");
+        plan2.setDescription("super plan bardzo fajny");
         plan2.addUser(userRepository.findByLogin("Micky"));
         plan2.addUser(userRepository.findByLogin("Marty"));
         planRepository.save(plan2);
@@ -41,7 +41,7 @@ public class PlanFixture {
         plan3.setAuthor(userRepository.findByLogin("Janek"));
         plan3.setName("takie se");
         plan3.setCalories(3200);
-        plan3.setDescription("żarcie jak żarcie ważne, że smaczne");
+        plan3.setDescription("super plan bardzo fajnye");
         plan3.addUser(userRepository.findByLogin("Ricky"));
         plan3.addUser(userRepository.findByLogin("Marty"));
         planRepository.save(plan3);

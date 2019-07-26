@@ -42,21 +42,13 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td><a href="#">Work 1</a></td>
-                                <td>Doe</td>
-                                <td>john@example.com</td>
-                            </tr>
-                            <tr>
-                                <td><a href="#">Work 2</a></td>
-                                <td>Moe</td>
-                                <td>mary@example.com</td>
-                            </tr>
-                            <tr>
-                                <td><a href="#">Work 3</a></td>
-                                <td>Dooley</td>
-                                <td>july@example.com</td>
-                            </tr>
+                            <c:forEach items="${plans}" var="plan">
+                                <tr>
+                                    <td>${plan.author.firstName} ${plan.author.lastName}</td>
+                                    <td><a href="/plan/details">${plan.name}</a></td>
+                                    <td>${plan.pricePerDay}/${plan.pricePerWeek}</td>
+                                </tr>
+                            </c:forEach>
                             </tbody>
                         </table>
                     </div>
@@ -70,21 +62,13 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td><a href="#">Work 1</a></td>
-                                <td>Doe</td>
-                                <td>john@example.com</td>
-                            </tr>
-                            <tr>
-                                <td><a href="#">Work 2</a></td>
-                                <td>Moe</td>
-                                <td>mary@example.com</td>
-                            </tr>
-                            <tr>
-                                <td><a href="#">Work 3</a></td>
-                                <td>Dooley</td>
-                                <td>july@example.com</td>
-                            </tr>
+                            <c:forEach items="${plans}" var="plan">
+                                <tr>
+                                    <td>${plan.author.firstName} ${plan.author.lastName}</td>
+                                    <td><a href="/plan/details">${plan.name}</a></td>
+                                    <td>${plan.pricePerDay}/${plan.pricePerWeek}</td>
+                                </tr>
+                            </c:forEach>
                             </tbody>
                         </table>
                     </div>
@@ -100,7 +84,7 @@
                             <tbody>
                                 <c:forEach items="${plans}" var="plan">
                                     <tr>
-                                        <td>${plan.author}</td>
+                                        <td>${plan.author.firstName} ${plan.author.lastName}</td>
                                         <td><a href="/plan/details">${plan.name}</a></td>
                                         <td>${plan.pricePerDay}/${plan.pricePerWeek}</td>
                                     </tr>

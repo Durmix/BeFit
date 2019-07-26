@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import pl.coderslab.entity.User;
 import pl.coderslab.service.UserService;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -66,9 +68,11 @@ public class UserController {
         return "redirect:/user/account/" + id;
     }
 
-    @GetMapping("/delete/{id}")
-    public String delete(@PathVariable Long id) {
-        userService.delete(id);
+    @RequestMapping("/delete/{id}")
+    public String delete(@PathVariable Long id, HttpSession session) {
+        User user = userService.findUser(id);
+        session.removeAttribute("logged");
+        userService.delete(user);
         return "redirect:/home";
     }
 

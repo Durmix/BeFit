@@ -19,24 +19,17 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link href="/css/style3.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="/js/scrypt1.js"></script>
     <link rel="stylesheet" href="https://bootswatch.com/4/simplex/bootstrap.min.css"/>
     <script>
-        $(document).ready(function(){
-            $('#deleteModal').on('show.bs.modal', function (event) {
-                let userId = $(event.relatedTarget).data('user-id');
-                let userLogin = $(event.relatedTarget).data('user-login');
-                $(this).find('.modal-body p #userLogin').text(userLogin);
-                $('#deleteId').on('click', function () {
-                    window.location.href = "/user/delete/" + userId;
-                })
-            });
-        });
+        function confirmDelete(id, location) {
+            const toDelete = window.confirm('Jesteś pewny?').valueOf();
+            if (toDelete) {
+                window.location = location + id;
+            }
+        }
     </script>
 
 </head>
@@ -143,7 +136,7 @@
                                             <label style="font-weight:bold;">Uprawnienia</label>
                                         </div>
                                         <div class="col-md-8 col-6">
-                                            ${logged.role}
+                                            ${user.role}
                                         </div>
                                     </div>
                                     <hr />
@@ -216,47 +209,12 @@
                                             <label style="font-weight:bold;">Usuń konto</label>
                                         </div>
                                         <div class="col-md-8 col-6">
-                                            <a href="#" class="btn btn-danger"
-                                               data-toggle="modal"
-                                               data-target="#deleteModal"
-                                               data-user-id="${logged.id}"
-                                               data-user-login="${logged.login}"
-                                               title="Delete user">KLIK</a>
+                                            <a href="" onclick="confirmDelete(${user.id}, '/user/delete/')">KLIK</a>
                                         </div>
                                     </div>
                                     <hr />
                                 </div>
 
-                            </div>
-                        </div>
-                    </div>
-
-                    <a href="#" class="btn btn-danger"
-                       data-toggle="modal"
-                       data-target="#deleteModal"
-                       data-user-id="${logged.id}"
-                       data-user-login="${logged.login}"
-                       title="Delete user">KLIK</a>
-
-                    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Potwierdzenie usunięcia</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-
-                                <div class="modal-body">
-                                    <p>Czy na pewno chcesz usunąć konto <strong><span id="userLogin"></span></strong>?</p>
-                                </div>
-
-                                <div class="modal-footer">
-                                    <button id="deleteId" type="button" class="btn btn-primary">Tak</button>
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Nie</button>
-                                </div>
                             </div>
                         </div>
                     </div>
