@@ -3,6 +3,7 @@ package pl.coderslab.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
@@ -26,6 +27,7 @@ public class Plan {
     private String name;
 
     @OneToMany(mappedBy = "plan")
+    @ToString.Exclude
     private List<Comment> comments;
 
     @NotNull
@@ -33,6 +35,7 @@ public class Plan {
     private User author;
 
     @ManyToMany(mappedBy = "usedPlans")
+    @ToString.Exclude
     private List<User> users = new ArrayList<>();
 
     @NotBlank

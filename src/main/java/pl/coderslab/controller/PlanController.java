@@ -44,4 +44,9 @@ public class PlanController {
         return "/planForm";
     }
 
+    @GetMapping("/order")
+    public String order() {
+        return "/order";
+    }
+
 }

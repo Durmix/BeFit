@@ -1,5 +1,6 @@
 package pl.coderslab.service;
 
+import org.hibernate.Hibernate;
 import org.springframework.stereotype.Service;
 import pl.coderslab.entity.User;
 import pl.coderslab.repository.UserRepository;
@@ -20,8 +21,22 @@ public class UserService {
         return userRepository.findOne(id);
     }
 
+    public User findUserWithPlans(Long id) {
+        User user = userRepository.findOne(id);
+        if (user.getRole().equals("MOD")) {
+            Hibernate.initialize(user.getCreatedPlans());
+        } else {
+            Hibernate.initialize(user.getUsedPlans());
+        }
+        return user;
+    }
+
     public void save(User user) {
         userRepository.save(user);
+    }
+
+    public void delete(Long id) {
+        userRepository.delete(id);
     }
 
 }

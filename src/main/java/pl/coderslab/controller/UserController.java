@@ -21,7 +21,8 @@ public class UserController {
 
     @RequestMapping("/account/{id}")
     public String account(@PathVariable Long id, Model model) {
-        User user = userService.findUser(id);
+        User user = userService.findUserWithPlans(id);
+        model.addAttribute(user);
         return "profile";
     }
 
@@ -63,6 +64,12 @@ public class UserController {
     public String changeAddress(@PathVariable Long id, @ModelAttribute User user) {
         userService.save(user);
         return "redirect:/user/account/" + id;
+    }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable Long id) {
+        userService.delete(id);
+        return "redirect:/home";
     }
 
 }

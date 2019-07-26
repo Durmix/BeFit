@@ -28,4 +28,5 @@ public class CustomAuthorizationFilter extends GenericFilterBean {
             chain.doFilter(request, response);
         }
     }
+
 }

@@ -17,12 +17,27 @@
 
 <head>
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link href="/css/style3.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="/js/scrypt1.js"></script>
-    <!------ Include the above in your HEAD tag ---------->
     <link rel="stylesheet" href="https://bootswatch.com/4/simplex/bootstrap.min.css"/>
+    <script>
+        $(document).ready(function(){
+            $('#deleteModal').on('show.bs.modal', function (event) {
+                let userId = $(event.relatedTarget).data('user-id');
+                let userLogin = $(event.relatedTarget).data('user-login');
+                $(this).find('.modal-body p #userLogin').text(userLogin);
+                $('#deleteId').on('click', function () {
+                    window.location.href = "/user/delete/" + userId;
+                })
+            });
+        });
+    </script>
 
 </head>
 <body>
@@ -32,8 +47,14 @@
         <a href="/mainPage" class="w3-bar-item w3-button"><img src="/images/logo.png" height="30"></a>
         <!-- Right-sided navbar links. Hide them on small screens -->
         <div class="w3-right w3-hide-small">
-            <a href="/user/account/${logged.id}" class="w3-bar-item w3-button">Twoje konto</a>
-            <a href="/plan/order" class="w3-bar-item w3-button">Zamów</a>
+            <a href="/user/account/${user.id}" class="w3-bar-item w3-button">Twoje konto</a>
+            <c:if test="${user.role == 'USER'}">
+                <a href="/plan/order" class="w3-bar-item w3-button">Zamów</a>
+            </c:if>
+            <c:if test="${user.role == 'MOD'}">
+                <a href="/plan/create" class="w3-bar-item w3-button">Stwórz plan</a>
+            </c:if>
+
             <a href="/logout" class="w3-bar-item w3-button">Wyloguj</a>
         </div>
     </div>
@@ -55,10 +76,7 @@
                                 </div>
                             </div>
                             <div class="userData ml-3">
-                                <h2 class="d-block" style="font-size: 4rem; font-weight: bold">${logged.login}</h2>
-                                <h5 class="d-block"><a href="/user/changeEmail/${logged.id}">Zmień email</a></h5>
-                                <h5 class="d-block"><a href="/user/changePassword/${logged.id}">Zmień hasło</a></h5>
-                                <h5 class="d-block"><a href="/user/changeAddress/${logged.id}">Zmień adres</a></h5>
+                                <h2 class="d-block" style="font-size: 6rem; font-weight: bold">${user.login}</h2>
                             </div>
                             <div class="ml-auto">
                                 <input type="button" class="btn btn-primary d-none" id="btnDiscard" value="Discard Changes" />
@@ -74,13 +92,16 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="connectedServices-tab" data-toggle="tab" href="#connectedServices" role="tab" aria-controls="connectedServices" aria-selected="false">
-                                        <c:if test="${logged.role == 'USER'}">
+                                        <c:if test="${user.role == 'USER'}">
                                             Zakupione plany
                                         </c:if>
-                                        <c:if test="${logged.role == 'MOD'}">
+                                        <c:if test="${user.role == 'MOD'}">
                                             Stworzone plany
                                         </c:if>
                                     </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="config-tab" data-toggle="tab" href="#config" role="tab" aria-controls="config" aria-selected="false">Edycja konta</a>
                                 </li>
                             </ul>
                             <div class="tab-content ml-1" id="myTabContent">
@@ -92,7 +113,7 @@
                                             <label style="font-weight:bold;">Imię i nazwisko</label>
                                         </div>
                                         <div class="col-md-8 col-6">
-                                            ${logged.firstName} ${logged.lastName}
+                                            ${user.firstName} ${user.lastName}
                                         </div>
                                     </div>
                                     <hr />
@@ -102,7 +123,7 @@
                                             <label style="font-weight:bold;">Email</label>
                                         </div>
                                         <div class="col-md-8 col-6">
-                                            ${logged.email}
+                                            ${user.email}
                                         </div>
                                     </div>
                                     <hr />
@@ -113,7 +134,7 @@
                                             <label style="font-weight:bold;">Adres</label>
                                         </div>
                                         <div class="col-md-8 col-6">
-                                            ${logged.address}
+                                            ${user.address}
                                         </div>
                                     </div>
                                     <hr />
@@ -128,22 +149,117 @@
                                     <hr />
 
                                 </div>
-                                <div class="tab-pane fade" id="connectedServices" role="tabpanel" aria-labelledby="ConnectedServices-tab">
-                                    <c:if test="${logged.role == 'USER'}">
-                                        <c:forEach items="${logged.usedPlans}" var="plan">
 
+                                <div class="tab-pane fade" id="connectedServices" role="tabpanel" aria-labelledby="ConnectedServices-tab">
+                                    <c:if test="${user.role == 'USER'}">
+                                        <c:forEach items="${user.usedPlans}" var="plan">
+                                            <div class="row">
+                                                <div class="col-sm-3 col-md-2 col-5">
+                                                    <label style="font-weight:bold;">${plan.name}</label>
+                                                </div>
+                                                <div class="col-md-8 col-6">
+                                                        ${plan.description}
+                                                </div>
+                                            </div>
+                                            <hr />
                                         </c:forEach>
                                     </c:if>
-                                    <c:if test="${logged.role == 'MOD'}">
-                                        <c:forEach items="${logged.createdPlans}" var="plan">
-
+                                    <c:if test="${user.role == 'MOD'}">
+                                        <c:forEach items="${user.createdPlans}" var="plan">
+                                            <div class="row">
+                                                <div class="col-sm-3 col-md-2 col-5">
+                                                    <label style="font-weight:bold;">${plan.name}</label>
+                                                </div>
+                                                <div class="col-md-8 col-6">
+                                                        ${plan.description}
+                                                </div>
+                                            </div>
+                                            <hr />
                                         </c:forEach>
                                     </c:if>
                                 </div>
+
+                                <div class="tab-pane fade" id="config" role="tabpanel" aria-labelledby="config-tab">
+
+                                    <div class="row">
+                                        <div class="col-sm-3 col-md-2 col-5">
+                                            <label style="font-weight:bold;">Zmień email</label>
+                                        </div>
+                                        <div class="col-md-8 col-6">
+                                            <a href="/user/changeEmail/${user.id}">KLIK</a>
+                                        </div>
+                                    </div>
+                                    <hr />
+
+                                    <div class="row">
+                                        <div class="col-sm-3 col-md-2 col-5">
+                                            <label style="font-weight:bold;">Zmień hasło</label>
+                                        </div>
+                                        <div class="col-md-8 col-6">
+                                            <a href="/user/changePassword/${user.id}">KLIK</a>
+                                        </div>
+                                    </div>
+                                    <hr />
+
+
+                                    <div class="row">
+                                        <div class="col-sm-3 col-md-2 col-5">
+                                            <label style="font-weight:bold;">Zmień adres</label>
+                                        </div>
+                                        <div class="col-md-8 col-6">
+                                            <a href="/user/changeAddress/${user.id}">KLIK</a>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div class="row">
+                                        <div class="col-sm-3 col-md-2 col-5">
+                                            <label style="font-weight:bold;">Usuń konto</label>
+                                        </div>
+                                        <div class="col-md-8 col-6">
+                                            <a href="#" class="btn btn-danger"
+                                               data-toggle="modal"
+                                               data-target="#deleteModal"
+                                               data-user-id="${logged.id}"
+                                               data-user-login="${logged.login}"
+                                               title="Delete user">KLIK</a>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                </div>
+
                             </div>
                         </div>
                     </div>
 
+                    <a href="#" class="btn btn-danger"
+                       data-toggle="modal"
+                       data-target="#deleteModal"
+                       data-user-id="${logged.id}"
+                       data-user-login="${logged.login}"
+                       title="Delete user">KLIK</a>
+
+                    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Potwierdzenie usunięcia</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+
+                                <div class="modal-body">
+                                    <p>Czy na pewno chcesz usunąć konto <strong><span id="userLogin"></span></strong>?</p>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button id="deleteId" type="button" class="btn btn-primary">Tak</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Nie</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
 
